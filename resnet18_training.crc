@@ -1,0 +1,16 @@
+#!/bin/bash
+#$ -m abe
+#$ -M avanave2@nd.edu
+#$ -N r18params
+#$ -q gpu
+#$ -l gpu=2
+
+conda deactivate
+#conda activate IrisSeg
+conda activate IrisSeg2
+
+#check if gpu is being used
+nvidia-smi
+
+python ccnet_train_circle.py --state resnet18_64_r18_checkpoint/resnet18-013-0.039946-maskIoU-0.950967.pth --cuda --cudnn --multi_gpu --batch_size 512 --log_txt --model_type resnet18 --tag "r18" --param_csv "/afs/crc.nd.edu/user/a/avanave2/OpenSourceIrisRecognition/methods/HDBIF/Matlab/BXGRID-Iris-Full-results.csv" --train_on_image
+#python ccnet_train_circle.py --cuda --cudnn --multi_gpu --batch_size 512 --log_txt --model_type resnet18 --tag "r18" --param_csv "/afs/crc.nd.edu/user/a/avanave2/OpenSourceIrisRecognition/methods/HDBIF/Matlab/BXGRID-Iris-Full-results.csv" --train_on_image
